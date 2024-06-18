@@ -1,0 +1,13 @@
+{% extends 'base/main.html' %}
+{% block content %}
+
+    <div class="header-bar">
+        <h1>About my app</h1>
+        <a href="{% url 'tasks' %}">Back</a>
+    </div>
+
+    <div class="card-body">
+        <p>{{ app_info.description }}</p>
+    </div>
+
+{% endblock content %}

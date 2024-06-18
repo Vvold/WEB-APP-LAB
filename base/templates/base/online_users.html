@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Users</title>
+</head>
+<body>
+<a href="{% url 'tasks' %}">Back</a>
+<h1>Online Users</h1>
+<ul>
+    {% for user in connected_users %}
+        <li>{{ user }}</li>
+    {% endfor %}
+</ul>
+</body>
+</html>

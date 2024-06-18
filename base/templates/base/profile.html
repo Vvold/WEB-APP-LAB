@@ -1,0 +1,15 @@
+{% extends 'base/main.html' %}
+{% block content %}
+
+    <div class="header-bar">
+        <h1>{{ username }}'s Profile</h1>
+        <a href="{% url 'tasks' %}">Back</a>
+    </div>
+
+    <div class="card-body">
+        <p>Email: {{ email }}</p>
+        <p>Gender: {{ gender }}</p>
+        <p>Birth Date: {{ birth_date }}</p>
+    </div>
+
+{% endblock content %}

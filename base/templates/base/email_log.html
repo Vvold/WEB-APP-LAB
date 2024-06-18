@@ -1,0 +1,43 @@
+{% extends 'base/main.html' %}
+{% block content %}
+
+    <div class="header-bar">
+        <h2>Email Log</h2>
+        <a href="{% url 'tasks' %}">Back</a>
+    </div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Timestamp</th>
+            <th>User Email</th>
+            <th>Subject</th>
+        </tr>
+        </thead>
+        <tbody id="email-log-table">
+        {% for log in email_logs %}
+            <tr>
+                <td>{{ log.timestamp }}</td>
+                <td>{{ log.user_email }}</td>
+                <td>{{ log.subject }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <script>
+        const emailLogTable = document.getElementById('email-log-table');
+        const ws = new WebSocket('ws://' + window.location.host + '/ws/email-logs/');
+
+        ws.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+            <td>${data.timestamp}</td>
+            <td>${data.user_email}</td>
+            <td>${data.subject}</td>
+        `;
+            emailLogTable.prepend(newRow);
+        };
+    </script>
+
+{% endblock content %}
